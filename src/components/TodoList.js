@@ -7,10 +7,16 @@ class TodoList extends React.Component{
     constructor() {
         super()
     }
+
     render() {
         return (
             <div>
-                <Todo />
+                {    console.log('props', this.props.tasks)}
+                {this.props.tasks.map( item => {
+                    return(
+                            <Todo key={item.id} item={item}/>
+                    )
+                })}
             </div>
         )
     }
