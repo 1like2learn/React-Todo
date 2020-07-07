@@ -20,7 +20,7 @@ class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
-
+  
   constructor() {
     super();
     this.state = {
@@ -34,9 +34,15 @@ class App extends React.Component {
       id: new Date(),
       completed: false
     };
-    this.setState([...this.state.tasks, newTask]);
+    this.setState({
+      tasks: [...this.state.tasks, newTask]
+    });
   };
   
+  clearCompleted = () => {
+    this.setState({tasks: this.state.tasks.filter( item => item.completed === false)})
+  }
+
   toggleTask = taskId => {
     this.setState({
       tasks: this.state.tasks.map(task => {
@@ -57,7 +63,7 @@ class App extends React.Component {
       <div>
         <h2>Welcome to your Todo App!</h2>
           <TodoForm addTask = {this.addTask}/>
-          <TodoList tasks = {this.state.tasks}/> 
+          <TodoList toggleTask = {this.toggleTask} tasks = {this.state.tasks} clearCompleted = {this.clearCompleted}/> 
       </div>
     );
   };

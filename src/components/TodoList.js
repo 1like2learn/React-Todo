@@ -4,21 +4,21 @@ import React from 'react'
 import Todo from './Todo'
 
 class TodoList extends React.Component{
-    constructor() {
-        super()
-    }
+    
+  render() {
+    return (
+      <div>
+        {this.props.tasks.map( item => {
+          return(
+            <Todo key = {item.id} item = {item} toggleTask = {this.props.toggleTask}/>
 
-    render() {
-        return (
-            <div>
-                {    console.log('props', this.props.tasks)}
-                {this.props.tasks.map( item => {
-                    return(
-                            <Todo key={item.id} item={item}/>
-                    )
-                })}
-            </div>
-        )
-    }
+          )
+        })}
+        <button onClick={this.props.clearCompleted}>
+          Clear Purchased
+        </button>
+      </div>
+    )
+  }
 }
 export default TodoList
